@@ -38,3 +38,6 @@ Then visit `http://localhost:8765` to see the welcome page.
 App Login:
 - User: salil at elevatitech.com
 - password: salil123
+
+## Screenshot
+![alt text](https://github.com/elevatitech/abtesting/blob/master/webroot/img/screenshot.png?raw=true) 
