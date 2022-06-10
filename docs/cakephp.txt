@@ -1,0 +1,25 @@
+
+php80 /usr/bin/composer create-project --prefer-dist cakephp/app:4.* cakephp
+
+
+bin/cake bake migration CreateAccessLog page:string version:string referrer:string is_view:int is_click:int created modified
+
+PHP=/usr/bin/php80 bash -c ''
+
+
+
+
+
+
+
+
+
+
+
+
+bin/cake server
+
+bin/cake migrations migrate
+
+bin/cake bake
+bin/cake bake all access_log
