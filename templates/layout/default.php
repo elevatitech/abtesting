@@ -1,57 +1,62 @@
 <?php
-/**
- * CakePHP(tm) : Rapid Development Framework (https://cakephp.org)
- * Copyright (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
- *
- * Licensed under The MIT License
- * For full copyright and license information, please see the LICENSE.txt
- * Redistributions of files must retain the above copyright notice.
- *
- * @copyright     Copyright (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
- * @link          https://cakephp.org CakePHP(tm) Project
- * @since         0.10.0
- * @license       https://opensource.org/licenses/mit-license.php MIT License
- * @var \App\View\AppView $this
- */
-
-$cakeDescription = 'CakePHP: the rapid development php framework';
+$description = 'AB Testing';
 ?>
 <!DOCTYPE html>
-<html>
-<head>
-    <?= $this->Html->charset() ?>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>
-        <?= $cakeDescription ?>:
-        <?= $this->fetch('title') ?>
-    </title>
-    <?= $this->Html->meta('icon') ?>
+<html lang="en">
+    <head>
+        <?= $this->Html->charset() ?>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>
+            <?= $description ?>:
+            <?= $this->fetch('title') ?>
+        </title>
+        <?= $this->Html->meta('icon') ?>
+        <meta name="description" content="An AB Testing Tool." />
 
-    <link href="https://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet">
 
-    <?= $this->Html->css(['normalize.min', 'milligram.min', 'cake']) ?>
+        <link href="https://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet" />
 
-    <?= $this->fetch('meta') ?>
-    <?= $this->fetch('css') ?>
-    <?= $this->fetch('script') ?>
-</head>
-<body>
-    <nav class="top-nav">
-        <div class="top-nav-title">
-            <a href="<?= $this->Url->build('/') ?>"><span>AB</span>TESTING</a>
-        </div>
-        <div class="top-nav-links">
-            <a href="/access-log">Raw Access Log</a>
-            <a href="/access-log/report">Access Log Report</a>
-        </div>
-    </nav>
-    <main class="main">
-        <div class="container">
-            <?= $this->Flash->render() ?>
-            <?= $this->fetch('content') ?>
-        </div>
-    </main>
-    <footer>
-    </footer>
-</body>
+        <?= $this->Html->css(['normalize.min', 'milligram.min', 'cake']) ?>
+
+        <?= $this->fetch('meta') ?>
+        <?= $this->fetch('css') ?>
+        <?= $this->fetch('script') ?>
+    </head>
+
+    <body>
+        <nav class="top-nav">
+            <div class="top-nav-title">
+                <a href="<?= $this->Url->build('/') ?>"><span>AB</span>TESTING</a>
+            </div>
+            <div class="top-nav-links">
+                <?php
+                $this->loadHelper('Authentication.Identity');
+                ?>
+                <?php if ($this->Identity->isLoggedIn()) { ?>
+                    <a href="/access-log">Access Log</a>
+                    <a href="/access-log/report">Report</a>
+                    <a href="/users">Users</a>
+                    <a href="/users/logout">Logout</a>
+                <?php } else { ?>
+                    <a href="/users/login">Login</a>
+                <?php } ?>
+            </div>
+        </nav>
+        <main class="main">
+            <div class="container">
+                <?= $this->Flash->render() ?>
+                <?= $this->fetch('content') ?>
+            </div>
+        </main>
+      <footer class="footer top-nav">
+        <section class="container">
+          <p>
+            Copyright <a
+              target="_blank"
+              href="https://elevatitech.com"
+              title="Elevati Infotech">Elevati Infotech Pvt. Ltd.</a>
+          </p>
+        </section>
+      </footer>
+    </body>
 </html>

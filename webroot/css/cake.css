@@ -16,7 +16,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 a {
-    color:#2f85ae;
+    color:#00608d;
     -webkit-transition:all 0.2s linear;
     transition:all 0.2s linear;
 }
@@ -24,7 +24,7 @@ a {
 a:hover,
 a:focus,
 a:active  {
-    color:#2a6496;
+    color:#00608d;
     -webkit-transition:all 0.2s easeout;
     transition:all 0.2s ease-out;
 }
@@ -33,7 +33,7 @@ a:active  {
 .top-nav-links a,
 th a,
 .actions a {
-    color: #606c76;
+    color: #00608d;
 }
 
 .side-nav a:hover,
@@ -59,6 +59,7 @@ body {
     padding: 2rem;
     background: #ffffff;
     border-radius: 0.4rem;
+    min-height: 80vh;
     /* Thanks Stripe */
     box-shadow: 0 7px 14px 0 rgba(60, 66, 87, 0.1),
         0 3px 6px 0 rgba(0, 0, 0, 0.07);

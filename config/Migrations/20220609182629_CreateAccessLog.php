@@ -5,6 +5,8 @@ use Migrations\AbstractMigration;
 
 class CreateAccessLog extends AbstractMigration
 {
+    public $autoId = false;
+
     /**
      * Change Method.
      *
@@ -34,13 +36,13 @@ class CreateAccessLog extends AbstractMigration
         $table->addColumn('is_view', 'integer', [
             'default' => 0,
             'limit' => 1,
-            //'unsigned' => true,
+            'signed' => false,
             'null' => false,
         ]);
         $table->addColumn('is_click', 'integer', [
             'default' => 0,
             'limit' => 1,
-            //'unsigned' => true,
+            'signed' => false,
             'null' => false,
         ]);
         $table->addColumn('created', 'datetime', [

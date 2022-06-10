@@ -4,6 +4,8 @@ php80 /usr/bin/composer create-project --prefer-dist cakephp/app:4.* cakephp
 
 bin/cake bake migration CreateAccessLog page:string version:string referrer:string is_view:int is_click:int created modified
 
+bin/cake bake migration CreateUserstest id:uuid:primary email:string password:string created modified
+
 PHP=/usr/bin/php80 bash -c ''
 
 

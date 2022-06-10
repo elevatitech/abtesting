@@ -42,5 +42,11 @@ class AccessLogController extends AppController
         }
         $this->set(compact('accessLog'));
     }
+    
+    public function report()
+    {
+        $accessLog = $this->paginate($this->AccessLog);
 
+        $this->set(compact('accessLog'));
+    }
 }
