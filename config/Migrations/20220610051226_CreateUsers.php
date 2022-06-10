@@ -27,11 +27,11 @@ class CreateUsers extends AbstractMigration
             'null' => false,
         ]);
         $table->addColumn('created', 'datetime', [
-            'default' => null,
+            'default' => 'CURRENT_TIMESTAMP',
             'null' => false,
         ]);
         $table->addColumn('modified', 'datetime', [
-            'default' => null,
+            'default' => 'CURRENT_TIMESTAMP',
             'null' => false,
         ]);
         

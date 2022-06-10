@@ -5,7 +5,7 @@
  */
 ?>
 <div class="accessLog index content">
-    <h3><?= __('Access Report') ?></h3>
+    <h3><?= __('Access Report') ?> <small>(Work in progress)</small></h3>
     <div class="table-responsive">
         <table>
             <thead>
