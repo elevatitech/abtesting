@@ -40,8 +40,9 @@ class PagesControllerTest extends TestCase
         Configure::write('debug', true);
         $this->get('/pages/home');
         $this->assertResponseOk();
-        $this->assertResponseContains('CakePHP');
-        $this->assertResponseContains('<html>');
+        $this->assertResponseContains('AB');
+        $this->assertResponseContains('TESTING');
+        $this->assertResponseContains('<html lang="en">');
     }
 
     /**
