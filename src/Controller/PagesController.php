@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /**
@@ -14,6 +15,7 @@ declare(strict_types=1);
  * @since     0.2.9
  * @license   https://opensource.org/licenses/mit-license.php MIT License
  */
+
 namespace App\Controller;
 
 use Cake\Core\Configure;
@@ -21,6 +23,7 @@ use Cake\Http\Exception\ForbiddenException;
 use Cake\Http\Exception\NotFoundException;
 use Cake\Http\Response;
 use Cake\View\Exception\MissingTemplateException;
+use Cake\Cache\Cache;
 
 /**
  * Static content controller
@@ -31,7 +34,7 @@ use Cake\View\Exception\MissingTemplateException;
  */
 class PagesController extends AppController
 {
-    
+
     public function beforeFilter(\Cake\Event\EventInterface $event)
     {
         parent::beforeFilter($event);
@@ -39,7 +42,7 @@ class PagesController extends AppController
         // the infinite redirect loop issue
         $this->Authentication->addUnauthenticatedActions(['display']);
     }
-    
+
     /**
      * Displays a view
      *
@@ -52,8 +55,7 @@ class PagesController extends AppController
      *   be found and not in debug mode.
      * @throws \Cake\View\Exception\MissingTemplateException In debug mode.
      */
-    public function display(string ...$path): ?Response
-    {
+    public function display(string ...$path): ?Response {
         if (!$path) {
             return $this->redirect('/');
         }
@@ -69,15 +71,24 @@ class PagesController extends AppController
             $subpage = $path[1];
         }
         $this->set(compact('page', 'subpage'));
-        
+
         // AB Testing
-        if($path[0] == 'home')
-        {
+        if ($path[0] == 'home') {
+            // Initialise the cache
+            if (!Cache::read('hits_version_0')) {
+                Cache::write('hits_version_0', 1);
+                Cache::write('hits_version_1', 1);
+            }
+
             $versions = ['home', 'home_1'];
-            $version = rand(0,1);
+            $versionA = Cache::read('hits_version_0');
+            $versionB = Cache::read('hits_version_1');
+            $version = $versionA > $versionB ? 1 : 0;
             $path[0] = $versions[$version];
+            $key = 'hits_version_' . $version;
+            Cache::increment($key, $offset = 1, $config = 'default');
         }
-        
+
         try {
             return $this->render(implode('/', $path));
         } catch (MissingTemplateException $exception) {
@@ -87,6 +98,5 @@ class PagesController extends AppController
             throw new NotFoundException();
         }
     }
-    
-    
+
 }

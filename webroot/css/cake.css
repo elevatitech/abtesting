@@ -59,7 +59,7 @@ body {
     padding: 2rem;
     background: #ffffff;
     border-radius: 0.4rem;
-    min-height: 80vh;
+    min-height: 75vh;
     /* Thanks Stripe */
     box-shadow: 0 7px 14px 0 rgba(60, 66, 87, 0.1),
         0 3px 6px 0 rgba(0, 0, 0, 0.07);

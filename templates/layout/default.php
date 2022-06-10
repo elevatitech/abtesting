@@ -56,6 +56,13 @@ $description = 'AB Testing';
               href="https://elevatitech.com"
               title="Elevati Infotech">Elevati Infotech Pvt. Ltd.</a>
           </p>
+          <p class="float-right">
+              <?php
+              use Cake\Cache\Cache;
+              ?>
+              <button class="button"><?= Cache::read('hits_version_0'); ?></button>
+              <button class="button button-outline"><?= Cache::read('hits_version_1'); ?></button>
+          </p>
         </section>
       </footer>
     </body>

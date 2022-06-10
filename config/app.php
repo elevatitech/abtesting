@@ -96,7 +96,7 @@ return [
      */
     'Cache' => [
         'default' => [
-            'className' => FileEngine::class,
+            'className' => \Cake\Cache\Engine\MemcachedEngine::class,
             'path' => CACHE,
             'url' => env('CACHE_DEFAULT_URL', null),
         ],
