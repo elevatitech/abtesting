@@ -36,5 +36,5 @@ bin/cake server
 Then visit `http://localhost:8765` to see the welcome page.
 
 App Login:
-- User: salil@elevatitech.com
+- User: salil at elevatitech.com
 - password: salil123
