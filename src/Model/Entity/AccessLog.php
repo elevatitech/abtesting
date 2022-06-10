@@ -31,6 +31,7 @@ class AccessLog extends Entity
         'page' => true,
         'version' => true,
         'referrer' => true,
+        'ip' => true,
         'is_view' => true,
         'is_click' => true,
         'created' => true,

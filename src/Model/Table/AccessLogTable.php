@@ -71,6 +71,10 @@ class AccessLogTable extends Table
             ->maxLength('referrer', 255);
 
         $validator
+            ->scalar('ip')
+            ->maxLength('ip', 255);
+
+        $validator
             ->integer('is_view')
             ->notEmptyString('is_view');
 
@@ -79,5 +83,30 @@ class AccessLogTable extends Table
             ->notEmptyString('is_click');
 
         return $validator;
+    }
+
+    public function trackImpression($page, $version, $referrer, $ip)
+    {
+        $this->insert($page, $version, $referrer, $ip, 1, 0);
+    }
+
+    public function trackConversion($page, $version, $referrer, $ip)
+    {
+        $this->insert($page, $version, $referrer, $ip, 0, 1);
+    }
+
+    private function insert($page, $version, $referrer, $ip, $isView, $isClick)
+    {
+        $query = $this->query();
+        $query->insert(['page', 'version', 'referrer', 'ip', 'is_view', 'is_click'])
+            ->values([
+                'page' => $page,
+                'version' => $version,
+                'referrer' => $referrer,
+                'ip' => $ip,
+                'is_view' => $isView,
+                'is_click' => $isClick,
+            ])
+            ->execute();
     }
 }

@@ -13,6 +13,7 @@
                     <th><?= $this->Paginator->sort('page') ?></th>
                     <th><?= $this->Paginator->sort('version') ?></th>
                     <th><?= $this->Paginator->sort('referrer') ?></th>
+                    <th><?= $this->Paginator->sort('ip') ?></th>
                     <th><?= $this->Paginator->sort('is_view') ?></th>
                     <th><?= $this->Paginator->sort('is_click') ?></th>
                     <th><?= $this->Paginator->sort('created') ?></th>
@@ -24,6 +25,7 @@
                     <td><?= h($accessLog->page) ?></td>
                     <td><?= h($accessLog->version) ?></td>
                     <td><?= h($accessLog->referrer) ?></td>
+                    <td><?= h($accessLog->ip) ?></td>
                     <td><?= $this->Number->format($accessLog->is_view) ?></td>
                     <td><?= $this->Number->format($accessLog->is_click) ?></td>
                     <td><?= h($accessLog->created) ?></td>

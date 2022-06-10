@@ -34,7 +34,7 @@ class CreateUsers extends AbstractMigration
             'default' => 'CURRENT_TIMESTAMP',
             'null' => false,
         ]);
-        
+
         $table->create();
     }
 }

@@ -38,7 +38,7 @@ class UsersController extends AppController
             $this->Flash->error(__('Invalid username or password'));
         }
     }
-    
+
     public function logout()
     {
         $result = $this->Authentication->getResult();
@@ -48,7 +48,7 @@ class UsersController extends AppController
             return $this->redirect(['controller' => 'Users', 'action' => 'login']);
         }
     }
-        
+
     /**
      * Index method
      *

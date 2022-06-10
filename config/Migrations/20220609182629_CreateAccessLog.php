@@ -17,7 +17,7 @@ class CreateAccessLog extends AbstractMigration
     public function change()
     {
         $table = $this->table('access_log');
-        
+
         $table->addColumn('page', 'string', [
             'default' => null,
             'limit' => 255,
@@ -31,7 +31,12 @@ class CreateAccessLog extends AbstractMigration
         $table->addColumn('referrer', 'string', [
             'default' => null,
             'limit' => 255,
-            'null' => false,
+            'null' => true,
+        ]);
+        $table->addColumn('ip', 'string', [
+            'default' => null,
+            'limit' => 255,
+            'null' => true,
         ]);
         $table->addColumn('is_view', 'integer', [
             'default' => 0,
@@ -46,13 +51,13 @@ class CreateAccessLog extends AbstractMigration
             'null' => false,
         ]);
         $table->addColumn('created', 'datetime', [
-            'default' => null,
+            'default' => 'CURRENT_TIMESTAMP',
             'null' => false,
         ]);
 
         $table->addIndex(['version', 'is_view', 'created']);
         $table->addIndex(['version', 'is_click', 'created']);
-        
+
         $table->create();
     }
 }
