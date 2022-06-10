@@ -25,3 +25,14 @@ bin/cake migrations migrate
 
 bin/cake bake
 bin/cake bake all access_log
+
+
+
+
+
+
+
+UI: Page Speed score green (optimised performance, accessibility, seo, best practices) 
+Backend: Server side page load time below 100ms (caching, sql query performance, php profiling)
+Testing: We follow TDD
+Code: Clean Code, SOLID principles

@@ -69,7 +69,15 @@ class PagesController extends AppController
             $subpage = $path[1];
         }
         $this->set(compact('page', 'subpage'));
-
+        
+        // AB Testing
+        if($path[0] == 'home')
+        {
+            $versions = ['home', 'home_1'];
+            $version = rand(0,1);
+            $path[0] = $versions[$version];
+        }
+        
         try {
             return $this->render(implode('/', $path));
         } catch (MissingTemplateException $exception) {
@@ -79,4 +87,6 @@ class PagesController extends AppController
             throw new NotFoundException();
         }
     }
+    
+    
 }

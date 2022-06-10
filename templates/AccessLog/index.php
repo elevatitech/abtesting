@@ -10,7 +10,6 @@
         <table>
             <thead>
                 <tr>
-                    <th><?= $this->Paginator->sort('id') ?></th>
                     <th><?= $this->Paginator->sort('page') ?></th>
                     <th><?= $this->Paginator->sort('version') ?></th>
                     <th><?= $this->Paginator->sort('referrer') ?></th>
@@ -22,7 +21,6 @@
             <tbody>
                 <?php foreach ($accessLog as $accessLog): ?>
                 <tr>
-                    <td><?= $this->Number->format($accessLog->id) ?></td>
                     <td><?= h($accessLog->page) ?></td>
                     <td><?= h($accessLog->version) ?></td>
                     <td><?= h($accessLog->referrer) ?></td>
