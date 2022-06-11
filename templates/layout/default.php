@@ -51,7 +51,7 @@ $description = 'AB Testing';
       <footer class="footer top-nav">
         <section class="container">
           <p>
-            Copyright <a
+            Powered by <a
               target="_blank"
               href="https://elevatitech.com"
               title="Elevati Infotech">Elevati Infotech Pvt. Ltd.</a>
