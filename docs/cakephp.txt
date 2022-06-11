@@ -10,6 +10,7 @@ bin/cake bake seed Users
 
 PHP=/usr/bin/php80 bash -c ''
 
+vendor/bin/phpunit
 
 
 
