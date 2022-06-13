@@ -24,6 +24,14 @@ class UsersControllerTest extends TestCase
     protected $fixtures = [
         'app.Users',
     ];
+    
+    
+    public function setUp(): void
+    {
+        $this->session(['Auth.User.id' => 1]);
+        parent::setUp();
+    }
+    
 
     /**
      * Test index method
@@ -33,7 +41,9 @@ class UsersControllerTest extends TestCase
      */
     public function testIndex(): void
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $this->get('/users');
+        
+        $this->assertResponseOk();
     }
 
     /**
@@ -44,7 +54,9 @@ class UsersControllerTest extends TestCase
      */
     public function testView(): void
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $this->get('/users/view/1');
+        
+        $this->assertResponseOk();
     }
 
     /**
@@ -55,7 +67,9 @@ class UsersControllerTest extends TestCase
      */
     public function testAdd(): void
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $this->get('/users/add');
+        
+        $this->assertResponseOk();
     }
 
     /**
@@ -66,7 +80,9 @@ class UsersControllerTest extends TestCase
      */
     public function testEdit(): void
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $this->get('/users/edit/1');
+        
+        $this->assertResponseOk();
     }
 
     /**
@@ -75,8 +91,10 @@ class UsersControllerTest extends TestCase
      * @return void
      * @uses \App\Controller\UsersController::delete()
      */
-    public function testDelete(): void
-    {
-        $this->markTestIncomplete('Not implemented yet.');
-    }
+//    public function testDelete(): void
+//    {
+//        $this->post('/users/delete/1');
+//        
+//        $this->assertResponseOk();
+//    }
 }

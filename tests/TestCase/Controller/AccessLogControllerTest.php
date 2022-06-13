@@ -24,6 +24,12 @@ class AccessLogControllerTest extends TestCase
     protected $fixtures = [
         'app.AccessLog',
     ];
+    
+    public function setUp(): void
+    {
+        $this->session(['Auth.User.id' => 1]);
+        parent::setUp();
+    }
 
     /**
      * Test index method
@@ -33,50 +39,9 @@ class AccessLogControllerTest extends TestCase
      */
     public function testIndex(): void
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $this->get('/access-log');
+        
+        $this->assertResponseOk();
     }
 
-    /**
-     * Test view method
-     *
-     * @return void
-     * @uses \App\Controller\AccessLogController::view()
-     */
-    public function testView(): void
-    {
-        $this->markTestIncomplete('Not implemented yet.');
-    }
-
-    /**
-     * Test add method
-     *
-     * @return void
-     * @uses \App\Controller\AccessLogController::add()
-     */
-    public function testAdd(): void
-    {
-        $this->markTestIncomplete('Not implemented yet.');
-    }
-
-    /**
-     * Test edit method
-     *
-     * @return void
-     * @uses \App\Controller\AccessLogController::edit()
-     */
-    public function testEdit(): void
-    {
-        $this->markTestIncomplete('Not implemented yet.');
-    }
-
-    /**
-     * Test delete method
-     *
-     * @return void
-     * @uses \App\Controller\AccessLogController::delete()
-     */
-    public function testDelete(): void
-    {
-        $this->markTestIncomplete('Not implemented yet.');
-    }
 }
