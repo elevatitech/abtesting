@@ -8,6 +8,10 @@ bin/cake bake migration CreateUserstest id:uuid:primary email:string password:st
 
 bin/cake bake seed Users
 
+
+bin/cake bake
+bin/cake bake all access_log
+
 PHP=/usr/bin/php80 bash -c ''
 
 vendor/bin/phpunit
@@ -27,8 +31,6 @@ bin/cake server
 bin/cake migrations migrate
 bin/cake migrations seed --seed UsersSeed
 
-bin/cake bake
-bin/cake bake all access_log
 
 
 
@@ -38,5 +40,5 @@ bin/cake bake all access_log
 
 UI: Page Speed score green (optimised performance, accessibility, seo, best practices)
 Backend: Server side page load time below 100ms (caching, sql query performance, php profiling)
-Testing: We follow TDD
-Code: Clean Code, SOLID principles
+Testing: We follow TDD (Regression Automated Tests)
+Code: Clean Code, DRY, SOLID principles

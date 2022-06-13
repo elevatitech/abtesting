@@ -23,7 +23,7 @@ use Cake\Http\Exception\ForbiddenException;
 use Cake\Http\Exception\NotFoundException;
 use Cake\Http\Response;
 use Cake\View\Exception\MissingTemplateException;
-use Cake\Cache\Cache;
+
 
 /**
  * Static content controller
@@ -33,6 +33,14 @@ use Cake\Cache\Cache;
  * @link https://book.cakephp.org/4/en/controllers/pages-controller.html
  */
 class PagesController extends AppController {
+
+    public function initialize(): void
+    {
+        parent::initialize();
+
+        $this->loadComponent('ABTesting');
+    }
+
 
     public function beforeFilter(\Cake\Event\EventInterface $event) {
         parent::beforeFilter($event);
@@ -71,7 +79,7 @@ class PagesController extends AppController {
         $this->set(compact('page', 'subpage'));
 
         // AB Testing
-        $path = $this->abTesting($path);
+        $path = $this->ABTesting->abTesting($path, $this->request);
 
         try {
             return $this->render(implode('/', $path));
@@ -83,46 +91,5 @@ class PagesController extends AppController {
         }
     }
 
-    private function abTesting($path)
-    {
-        // AB Testing
-        if ($path[0] == 'home') {
-            // Initialise the cache
-            if (!Cache::read('hits_version_0')) {
-                Cache::write('hits_version_0', 1);
-                Cache::write('hits_version_1', 1);
-            }
-
-            // A or B
-            $versions = ['home', 'home_1'];
-            $versionA = Cache::read('hits_version_0');
-            $versionB = Cache::read('hits_version_1');
-            $version = $versionA > $versionB ? 1 : 0;
-            $path[0] = $versions[$version];
-            $key = 'hits_version_' . $version;
-            Cache::increment($key, $offset = 1, $config = 'default');
-
-            // Track impression
-            $accessLogTable = new \App\Model\Table\AccessLogTable();
-            $page = '/';
-            $versionImpression = $version == 0 ? 'A' : 'B';
-            $referrer = $this->request->referer(false);
-            $ip = $this->request->clientIp();
-            $accessLogTable->trackImpression($page, $versionImpression, $referrer, $ip);
-        }
-
-        // Conversion
-        if ($path[0] == 'thankyou') {
-            // Track conversion
-            $accessLogTable = new \App\Model\Table\AccessLogTable();
-            $page = '/thankyou';
-            $versionImpression = $this->request->getQuery('version');
-            $referrer = $this->request->referer(false);
-            $ip = $this->request->clientIp();
-            $accessLogTable->trackConversion($page, $versionImpression, $referrer, $ip);
-        }
-
-        return $path;
-    }
 
 }
