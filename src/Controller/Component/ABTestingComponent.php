@@ -33,8 +33,6 @@ class ABTestingComponent extends Component
     public function startup(EventInterface $event)
     {
         $this->setController($event->getSubject());
-        print_r($this->controller);
-        exit;
     }
 
     public function abTesting($path, $httpRequest)
